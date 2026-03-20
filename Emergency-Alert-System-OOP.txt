@@ -1,0 +1,297 @@
+import java.util.Scanner; 
+
+  
+
+// Abstract Base Class 
+
+abstract class Emergency { 
+
+    private String location; 
+
+  
+
+    public Emergency(String location) { 
+
+        this.location = location; 
+
+    } 
+
+  
+
+    public String getLocation() { 
+
+        return location; 
+
+    } 
+
+  
+
+    // Abstract method 
+
+    public abstract void sendAlert(); 
+
+} 
+
+  
+
+// Medical Emergency 
+
+class MedicalEmergency extends Emergency { 
+
+    public MedicalEmergency(String location) { 
+
+        super(location); 
+
+    } 
+
+  
+
+    @Override 
+
+    public void sendAlert() { 
+
+        System.out.println("\nMedical Emergency at " + getLocation()); 
+
+        System.out.println("Alert sent to Hospital and Family."); 
+
+    } 
+
+} 
+
+  
+
+// Fire Emergency 
+
+class FireEmergency extends Emergency { 
+
+    public FireEmergency(String location) { 
+
+        super(location); 
+
+    } 
+
+  
+
+    @Override 
+
+    public void sendAlert() { 
+
+        System.out.println("\nFire Emergency at " + getLocation()); 
+
+        System.out.println("Alert sent to Fire Department."); 
+
+    } 
+
+} 
+
+  
+
+// Accident Emergency 
+
+class AccidentEmergency extends Emergency { 
+
+    public AccidentEmergency(String location) { 
+
+        super(location); 
+
+    } 
+
+  
+
+    @Override 
+
+    public void sendAlert() { 
+
+        System.out.println("\nAccident Emergency at " + getLocation()); 
+
+        System.out.println("Alert sent to Ambulance and Emergency Contacts."); 
+
+    } 
+
+} 
+
+  
+
+// Security Emergency 
+
+class SecurityEmergency extends Emergency { 
+
+    public SecurityEmergency(String location) { 
+
+        super(location); 
+
+    } 
+
+  
+
+    @Override 
+
+    public void sendAlert() { 
+
+        System.out.println("\nSecurity Threat at " + getLocation()); 
+
+        System.out.println("Alert sent to Police and Trusted Contacts."); 
+
+    } 
+
+} 
+
+  
+
+// Natural Disaster 
+
+class NaturalEmergency extends Emergency { 
+
+    public NaturalEmergency(String location) { 
+
+        super(location); 
+
+    } 
+
+  
+
+    @Override 
+
+    public void sendAlert() { 
+
+        System.out.println("\nNatural Disaster at " + getLocation()); 
+
+        System.out.println("Alert sent to Disaster Management Team."); 
+
+    } 
+
+} 
+
+  
+
+// User Class 
+
+class User { 
+
+    private String name; 
+
+  
+
+    public User(String name) { 
+
+        this.name = name; 
+
+    } 
+
+  
+
+    public void displayUser() { 
+
+        System.out.println("\nUser: " + name); 
+
+    } 
+
+} 
+
+  
+
+// Main Class 
+
+public class Main { 
+
+    public static void main(String[] args) { 
+
+  
+
+        Scanner sc = new Scanner(System.in); 
+
+  
+
+        System.out.print("Enter User Name: "); 
+
+        String name = sc.nextLine(); 
+
+        User user = new User(name); 
+
+        user.displayUser(); 
+
+  
+
+        System.out.print("Enter Location: "); 
+
+        String location = sc.nextLine(); 
+
+  
+
+        System.out.println("\nSelect Emergency Type:"); 
+
+        System.out.println("1. Medical"); 
+
+        System.out.println("2. Fire"); 
+
+        System.out.println("3. Accident"); 
+
+        System.out.println("4. Security"); 
+
+        System.out.println("5. Natural Disaster"); 
+
+  
+
+        System.out.print("Enter choice: "); 
+
+        int choice = sc.nextInt(); 
+
+  
+
+        Emergency emergency = null; 
+
+  
+
+        switch (choice) { 
+
+            case 1: 
+
+                emergency = new MedicalEmergency(location); 
+
+                break; 
+
+            case 2: 
+
+                emergency = new FireEmergency(location); 
+
+                break; 
+
+            case 3: 
+
+                emergency = new AccidentEmergency(location); 
+
+                break; 
+
+            case 4: 
+
+                emergency = new SecurityEmergency(location); 
+
+                break; 
+
+            case 5: 
+
+                emergency = new NaturalEmergency(location); 
+
+                break; 
+
+            default: 
+
+                System.out.println("Invalid choice!"); 
+
+                return; 
+
+        } 
+
+  
+
+        emergency.sendAlert(); 
+
+  
+
+        System.out.println("\nAlert processed successfully."); 
+
+        sc.close(); 
+
+    } 
+
+} 
